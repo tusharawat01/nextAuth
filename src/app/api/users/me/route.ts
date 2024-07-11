@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
     //extract data from token
     const userId = await getDataFromToken(request)
     const user = await User.findOne({_id: userId}).select("-password");
+    console.log(user);
 
     if(!user){
         return NextResponse.json({error: "Useer not found"}, {status: 400});
